@@ -7,9 +7,13 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/data-access/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "libs/data-access/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   }

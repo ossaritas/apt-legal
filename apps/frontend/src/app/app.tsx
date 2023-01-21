@@ -3,8 +3,22 @@ import styles from './app.module.css';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import { useQuery } from 'urql';
+import { graphql, MyQeQuery, MyQeDocument } from '@apt-legal/data-access';
+
+const MyQuery = graphql(
+  `
+    query MyQe {
+      currentUser {
+        name
+      }
+    }
+  `
+);
 
 export function App() {
+  const [{ data, error }] = useQuery({ query: MyQeDocument });
+
   return (
     <>
       <NxWelcome title="frontend" />
