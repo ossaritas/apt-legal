@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -125,11 +124,3 @@ export type UserStats = {
   followingCount: Scalars['Int'];
   tweetCount: Scalars['Int'];
 };
-
-export type MyQeQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type MyQeQuery = { __typename?: 'Query', currentUser: { __typename?: 'User', name: string } };
-
-
-export const MyQeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQe"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currentUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<MyQeQuery, MyQeQueryVariables>;
