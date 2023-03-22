@@ -7,6 +7,7 @@ import {
   AiOutlineBank,
   AiOutlinePaperClip,
   AiOutlineRest,
+  AiOutlineLogout,
 } from 'react-icons/ai';
 import sidebarNav from '../../../config/sidebarNav';
 import { NavLink } from 'react-router-dom';
@@ -25,36 +26,55 @@ const icons = {
 
 const SideBar = () => {
   return (
-    <div className="bg-gray-300">
-      <nav className="flex flex-col">
-        <div className="mt-8 mb-8 w-12 self-center">
-          <img className="" src={logo} alt="logo" />
+    <div className=" flex h-screen w-64 flex-col bg-gray-800">
+      <div className="flex h-20 w-full items-center justify-center ">
+        <div className="mt-8 mb-8 w-10 self-center">
+          <img src={logo} alt="logo" />
         </div>
-        <ul className="mt-4 mb-4">
+        <h1 className="ml-2 select-none text-2xl font-bold text-white">
+          APT LEGAL
+        </h1>
+      </div>
+      <div className="flex-grow">
+        <nav className="flex flex-col">
           {sidebarNav.map((element) => {
             const Icon: IconType = icons[element.icon];
             return (
-              <li key={element.text} className="group mb-2 flex flex-col pb-2">
-                <NavLink
-                  className={({ isActive }) =>
-                    clsx(
-                      'flex items-center border-b-2 border-t-2  border-transparent p-2 text-xl',
-                      isActive ? 'group/i bg-gray-400 text-blue-600 ' : ''
-                    )
-                  }
-                  to={element.link}
-                >
-                  <div className="pl-1">
-                    <Icon className=" fill-blue-800 text-2xl" />
-                  </div>
-                  <span className="pl-2 text-inherit">{element.text}</span>
-                </NavLink>
-              </li>
+              <NavLink
+                key={element.text}
+                className={({ isActive }) =>
+                  clsx(
+                    'group flex items-center py-2 px-4 text-gray-400 hover:bg-gray-700 hover:text-white',
+                    isActive ? 'bg-gray-700 text-white ' : ''
+                  )
+                }
+                to={element.link}
+              >
+                {({ isActive }) => (
+                  <>
+                    <Icon
+                      className={clsx(
+                        'text-2xl group-hover:fill-white',
+                        isActive ? 'fill-white ' : ''
+                      )}
+                    />
+                    <span className="pl-2 text-inherit group-hover:text-white">
+                      {element.text}
+                    </span>
+                  </>
+                )}
+              </NavLink>
             );
           })}
-        </ul>
-        <button>Logout</button>
-      </nav>
+        </nav>
+      </div>
+
+      <div className="flex h-20 w-full items-center justify-center text-white">
+        <button className="flex items-center rounded-lg bg-red-500 px-4 py-2 hover:bg-red-600 focus:outline-none">
+          <span>Çıkış Yap</span>
+          <AiOutlineLogout size={20} className="mr-2" />
+        </button>
+      </div>
     </div>
   );
 };
