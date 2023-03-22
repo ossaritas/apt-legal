@@ -1,11 +1,9 @@
-import Layout from './components/Layout';
-import Header from './components/Header';
-import Admin from './components/Admin';
+import Layout from './components/Layout/Layout';
 
 export function App() {
   return (
     <Layout>
-      <Admin />
+      <div>a</div>
     </Layout>
   );
 }

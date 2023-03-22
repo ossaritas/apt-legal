@@ -5,7 +5,7 @@
 
 @layer base {
   * {
-    @apply text-c-7 font-medium;
+    @apply font-medium text-black;
   }
 }
 
