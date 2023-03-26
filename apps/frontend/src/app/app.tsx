@@ -1,9 +1,12 @@
 import Layout from './components/Layout/Layout';
+import Sidebar from './components/Sidebar/Sidebar';
+import Content from './components/Layout/Content';
 
 export function App() {
   return (
     <Layout>
-      <div>a</div>
+      <Sidebar />
+      <Content />
     </Layout>
   );
 }

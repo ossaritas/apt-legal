@@ -1,22 +1,11 @@
-import React from 'react';
-import SideBar from '../Sidebar/Sidebar';
-import Card from '../UI/Card';
-import Input from '../UI/Input';
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className=" grid h-screen grid-cols-[1fr_6fr]  bg-gray-600">
-      <SideBar />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <Input />
-        <Card title={'asdasd'} description="aasdasd" />
-        <Card title={'asdasd'} description="aasdasd" />
-        <Card title={'asdasd'} description="aasdasd" />
-        <Card title={'asdasd'} description="aasdasd" />
-        <Card title={'asdasd'} description="aasdasd" />
-        <Card title={'asdasd'} description="aasdasd" />
-        <Card title={'asdasd'} description="aasdasd" />
-      </div>
+    <div className="grid h-screen grid-cols-[1fr_6fr] overflow-auto bg-gray-600">
+      {children}
     </div>
   );
 };

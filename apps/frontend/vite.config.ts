@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vite';
+import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
@@ -7,6 +7,9 @@ export default defineConfig({
   server: {
     port: 4200,
     host: 'localhost',
+    fs: {
+      allow: [searchForWorkspaceRoot(process.cwd())],
+    },
   },
 
   plugins: [
@@ -17,13 +20,13 @@ export default defineConfig({
   ],
 
   // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [
-  //    viteTsConfigPaths({
-  //      root: '../../',
-  //    }),
-  //  ],
-  // },
+  worker: {
+    plugins: [
+      viteTsConfigPaths({
+        root: '../../',
+      }),
+    ],
+  },
 
   test: {
     globals: true,

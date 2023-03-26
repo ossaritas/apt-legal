@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "typeRoots": ["apps/frontend/src/types"],
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,

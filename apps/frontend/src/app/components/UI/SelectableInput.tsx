@@ -1,16 +1,16 @@
 import React, { ChangeEvent } from 'react';
 
-interface InputProps {
+interface SelectableInputProps {
   label?: string;
-  placeholder?: string;
+  options: { value: string | number; label: string }[];
   value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   className?: string;
 }
 
-const Input: React.FC<InputProps> = ({
+const SelectableInput: React.FC<SelectableInputProps> = ({
   label,
-  placeholder,
+  options,
   value,
   onChange,
   className,
@@ -18,15 +18,19 @@ const Input: React.FC<InputProps> = ({
   return (
     <div className={`flex flex-col ${className}`}>
       {label && <label className="mb-2 font-bold text-gray-700">{label}</label>}
-      <input
+      <select
         className="rounded-lg border border-gray-400 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
-        type="text"
-        placeholder={placeholder}
         value={value}
         onChange={onChange}
-      />
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
 
-export default Input;
+export default SelectableInput;
