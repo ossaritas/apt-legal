@@ -10,10 +10,103 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Suggestion {
-  id        Int      @id @default(autoincrement())
-  name      String
-  handle    String
-  avatar    String
-  reason String
+enum Role {
+  PARTNER
+  LAWYER
+  ASSISTANT
+  ADMIN
+}
+
+enum CaseType {
+  CIVIL
+  CRIMINAL
+  ADMINISTRATIVE
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Role     @default(ADMIN)
+}
+
+model Attorney {
+  id        String    @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String    @unique
+  phone     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  clients   Client[]
+  cases     Case[]
+  hearings  Hearing[]
+}
+
+model Client {
+  id        String   @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String?  @unique
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  attorney   Attorney @relation(fields: [attorneyId], references: [id])
+  attorneyId String
+
+  cases    Case[]
+  payments Payment[]
+  Hearing  Hearing[]
+}
+
+model Case {
+  id        String   @id @default(uuid())
+  title     String
+  type      CaseType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId String
+
+  attorney   Attorney @relation(fields: [attorneyId], references: [id])
+  attorneyId String
+
+  hearings Hearing[]
+  payments Payment[]
+}
+
+model Payment {
+  id          String   @id @default(uuid())
+  amount      Float
+  description String?
+  date        DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId String
+
+  case   Case   @relation(fields: [caseId], references: [id])
+  caseId String
+}
+
+model Hearing {
+  id        String   @id @default(uuid())
+  date      DateTime
+  outcome   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  case   Case   @relation(fields: [caseId], references: [id])
+  caseId String
+
+  client   Client @relation(fields: [clientId], references: [id])
+  clientId String
+
+  attorney   Attorney @relation(fields: [attorneyId], references: [id])
+  attorneyId String
 }

@@ -13,114 +13,57 @@ export type Scalars = {
   Float: number;
 };
 
-export type Favorite = {
-  __typename?: 'Favorite';
-  createdAt: Scalars['String'];
-  id: Scalars['String'];
-  tweet: Tweet;
-  updatedAt: Scalars['String'];
-  user: User;
+export type AuthPayload = {
+  __typename?: 'AuthPayload';
+  token?: Maybe<Scalars['String']>;
+  user?: Maybe<User>;
 };
 
-export type FavoriteInput = {
-  tweetId: Scalars['String'];
-  userId: Scalars['String'];
-};
-
-export type HashtagTrend = {
-  __typename?: 'HashtagTrend';
-  hashtag: Scalars['String'];
-  tweetCount: Scalars['Int'];
+export type Link = {
+  __typename?: 'Link';
+  description: Scalars['String'];
+  id: Scalars['ID'];
+  postedBy?: Maybe<User>;
+  url: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createFavorite: Favorite;
-  createTweet: Tweet;
-  deleteFavorite: Favorite;
+  login?: Maybe<AuthPayload>;
+  post: Link;
+  signup?: Maybe<AuthPayload>;
 };
 
 
-export type MutationCreateFavoriteArgs = {
-  favorite: FavoriteInput;
+export type MutationLoginArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
-export type MutationCreateTweetArgs = {
-  body: Scalars['String'];
-  userId: Scalars['String'];
+export type MutationPostArgs = {
+  description: Scalars['String'];
+  url: Scalars['String'];
 };
 
 
-export type MutationDeleteFavoriteArgs = {
-  favorite: FavoriteInput;
+export type MutationSignupArgs = {
+  email: Scalars['String'];
+  name: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  currentUser: User;
-  suggestions: Array<Suggestion>;
-  trends: Array<Trend>;
-  tweets: Array<Tweet>;
-};
-
-export type Suggestion = {
-  __typename?: 'Suggestion';
-  avatarUrl: Scalars['String'];
-  handle: Scalars['String'];
-  name: Scalars['String'];
-  reason: Scalars['String'];
-};
-
-export type TopicTrend = {
-  __typename?: 'TopicTrend';
-  quote?: Maybe<TopicTrendQuote>;
-  topic: Scalars['String'];
-  tweetCount: Scalars['Int'];
-};
-
-export type TopicTrendQuote = {
-  __typename?: 'TopicTrendQuote';
-  description: Scalars['String'];
-  imageUrl: Scalars['String'];
-  title: Scalars['String'];
-};
-
-export type Trend = HashtagTrend | TopicTrend;
-
-export type Tweet = {
-  __typename?: 'Tweet';
-  author?: Maybe<User>;
-  body: Scalars['String'];
-  createdAt: Scalars['String'];
-  id: Scalars['String'];
-  stats?: Maybe<TweetStats>;
-  updatedAt: Scalars['String'];
-};
-
-export type TweetStats = {
-  __typename?: 'TweetStats';
-  commentCount: Scalars['Int'];
-  favoriteCount: Scalars['Int'];
-  retweetCount: Scalars['Int'];
+  feed: Array<Link>;
+  hello: Scalars['String'];
+  me: User;
 };
 
 export type User = {
   __typename?: 'User';
-  avatarUrl: Scalars['String'];
-  coverUrl: Scalars['String'];
-  createdAt: Scalars['String'];
-  favorites?: Maybe<Array<Favorite>>;
-  handle: Scalars['String'];
-  id: Scalars['String'];
+  email: Scalars['String'];
+  id: Scalars['ID'];
+  links: Array<Link>;
   name: Scalars['String'];
-  stats?: Maybe<UserStats>;
-  updatedAt: Scalars['String'];
-};
-
-export type UserStats = {
-  __typename?: 'UserStats';
-  followerCount: Scalars['Int'];
-  followingCount: Scalars['Int'];
-  tweetCount: Scalars['Int'];
 };

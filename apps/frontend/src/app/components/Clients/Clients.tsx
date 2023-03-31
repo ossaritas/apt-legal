@@ -3,6 +3,9 @@ import Button from '../UI/Button';
 import Input from '../UI/Input';
 import Table from '../UI/Table';
 
+import { graphql } from 'libs/data-access/src/gql/';
+import { useQuery } from 'urql';
+
 const columns = [
   { accessor: 'id', Header: 'ID' },
   { accessor: 'name', Header: 'Name' },

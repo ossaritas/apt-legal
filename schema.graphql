@@ -1,74 +1,30 @@
 type Query {
-  currentUser: User!
-  suggestions: [Suggestion!]!
-  tweets: [Tweet!]!
-  trends: [Trend!]!
+  hello: String!
+  feed: [Link!]!
+  me: User!
 }
+
 type Mutation {
-  createTweet(userId: String!, body: String!): Tweet!
-  createFavorite(favorite: FavoriteInput!): Favorite!
-  deleteFavorite(favorite: FavoriteInput!): Favorite!
-}
-input FavoriteInput {
-  userId: String!
-  tweetId: String!
-}
-type User {
-  id: String!
-  name: String!
-  handle: String!
-  coverUrl: String!
-  avatarUrl: String!
-  createdAt: String!
-  updatedAt: String!
-  stats: UserStats
-  favorites: [Favorite!]
-}
-type Suggestion {
-  name: String!
-  handle: String!
-  avatarUrl: String!
-  reason: String!
+  post(url: String!, description: String!): Link!
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
 }
 
-type UserStats {
-  tweetCount: Int!
-  followingCount: Int!
-  followerCount: Int!
-}
-type Tweet {
-  id: String!
-  body: String!
-  createdAt: String!
-  updatedAt: String!
-  author: User
-  stats: TweetStats
-}
-type TweetStats {
-  favoriteCount: Int!
-  retweetCount: Int!
-  commentCount: Int!
-}
-type Favorite {
-  id: String!
-  tweet: Tweet!
-  user: User!
-  createdAt: String!
-  updatedAt: String!
-}
-
-type HashtagTrend {
-  hashtag: String!
-  tweetCount: Int!
-}
-type TopicTrendQuote {
-  title: String!
+type Link {
+  id: ID!
   description: String!
-  imageUrl: String!
+  url: String!
+  postedBy: User
 }
-type TopicTrend {
-  topic: String!
-  tweetCount: Int!
-  quote: TopicTrendQuote
+
+type AuthPayload {
+  token: String
+  user: User
 }
-union Trend = TopicTrend | HashtagTrend
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  links: [Link!]!
+}

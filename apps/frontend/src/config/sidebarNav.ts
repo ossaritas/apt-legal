@@ -1,15 +1,15 @@
 const sidebarNav = [
   {
-    link: '/dashboard',
-    section: 'dashboard',
+    link: '/cases',
+    section: 'cases',
     icon: 'AiOutlineDashboard', //width:"20"
-    text: 'Dashboard',
+    text: 'Cases',
   },
   {
-    link: '/todo',
-    section: 'todo',
+    link: '/attorneys',
+    section: 'attorneys',
     icon: 'AiOutlinePaperClip',
-    text: 'Todo',
+    text: 'Attorneys',
   },
   {
     link: '/clients',
@@ -18,22 +18,22 @@ const sidebarNav = [
     text: 'Clients',
   },
   {
-    link: '/cases',
-    section: 'cases',
+    link: '/hearings',
+    section: 'hearings',
     icon: 'AiOutlineFolderOpen',
-    text: 'Cases',
+    text: 'Hearings',
   },
   {
-    link: '/office',
-    section: 'office',
+    link: '/payments',
+    section: 'payments',
     icon: 'AiOutlineCoffee',
-    text: 'Office',
+    text: 'Payments',
   },
   {
-    link: '/budget',
-    section: 'budget',
+    link: '/users',
+    section: 'users',
     icon: 'AiOutlineBank',
-    text: 'Budget',
+    text: 'Users',
   },
 ];
 
